@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { NosotrosComponent } from './pages/nosotros/nosotros.component';
+
 import { ProductosComponent } from './pages/productos/productos.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -12,8 +12,6 @@ import { RegistroCursoComponent } from './pages/registro-curso/registro-curso.co
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
-    { path: 'nosotros', component: NosotrosComponent },
-    { path: 'productos', component: ProductosComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
     { path: 'cursos', component: CursosComponent, canActivate: [AuthGuard] },
