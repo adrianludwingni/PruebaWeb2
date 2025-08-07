@@ -1,0 +1,38 @@
+<div class="register-container">
+    <h2 class="register-title">Iniciar Sesión</h2>
+    <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-group">
+            <label class="form-label">Correo electrónico:</label>
+            <input 
+                type="email" 
+                formControlName="email" 
+                required
+                class="form-input"
+                placeholder="Ingresa tu correo electrónico"
+                [class.invalid]="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
+            <div *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched" class="error-messages">
+                <span *ngIf="formLogin.get('email')?.hasError('required')" class="error-text">El correo es obligatorio para ingresar</span>
+                <span *ngIf="formLogin.get('email')?.hasError('email')" class="error-text">Ingresa un correo válido con </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Contraseña:</label>
+            <input 
+                type="password" 
+                formControlName="password" 
+                required
+                class="form-input"
+                placeholder="Ingresa tu contraseña"
+                [class.invalid]="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+            <div *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched" class="error-messages">
+                <span class="error-text">La contraseña es obligatoria para ingresar</span>
+            </div>
+        </div>
+        <button type="submit" [disabled]="formLogin.invalid || cargando" class="submit-button">
+            {{ cargando ? 'Entrando...' : 'Entrar' }}
+        </button>
+        <div *ngIf="errorLogin" class="general-error">
+            Error, Correo o contraseña incorrectos!!.
+        </div>
+    </form>
+</div>

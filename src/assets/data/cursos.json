@@ -1,0 +1,12 @@
+{
+  "cursos": [
+    {
+      "id": "b4d6",
+      "nombreCurso": "dsad",
+      "descripcion": "dsadadsad",
+      "nombreProfesor": "juanito",
+      "numeroEstudiantes": 20,
+      "materiaCurso": "Materia"
+    }
+  ]
+}

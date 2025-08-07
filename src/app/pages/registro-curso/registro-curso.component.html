@@ -1,0 +1,74 @@
+<div class="register-container">
+    <h2 class="register-title">Registro de Curso</h2>
+    <form [formGroup]="formCurso" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-group">
+            <label class="form-label">Nombre del curso:</label>
+            <input type="text" formControlName="nombreCurso" class="form-input"
+                [class.invalid]="formCurso.get('nombreCurso')?.invalid && formCurso.get('nombreCurso')?.touched"
+                placeholder="Ingresa el nombre del curso">
+            <div *ngIf="formCurso.get('nombreCurso')?.invalid && formCurso.get('nombreCurso')?.touched"
+                class="error-messages">
+                <span *ngIf="formCurso.get('nombreCurso')?.hasError('required')" class="error-text">El nombre del curso
+                    es obligatorio</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Descripción:</label>
+            <textarea formControlName="descripcion" class="form-input"
+                [class.invalid]="formCurso.get('descripcion')?.invalid && formCurso.get('descripcion')?.touched"
+                placeholder="Ingresa la descripción del curso" rows="4"></textarea>
+            <div *ngIf="formCurso.get('descripcion')?.invalid && formCurso.get('descripcion')?.touched"
+                class="error-messages">
+                <span *ngIf="formCurso.get('descripcion')?.hasError('required')" class="error-text">La descripción es
+                    obligatoria</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Nombre del profesor:</label>
+            <input type="text" formControlName="nombreProfesor" class="form-input"
+                [class.invalid]="formCurso.get('nombreProfesor')?.invalid && formCurso.get('nombreProfesor')?.touched"
+                placeholder="Ingresa el nombre del profesor">
+            <div *ngIf="formCurso.get('nombreProfesor')?.invalid && formCurso.get('nombreProfesor')?.touched"
+                class="error-messages">
+                <span *ngIf="formCurso.get('nombreProfesor')?.hasError('required')" class="error-text">El nombre del
+                    profesor es obligatorio</span>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="form-label">Número de estudiantes:</label>
+            <input type="number" formControlName="numeroEstudiantes" class="form-input"
+                [class.invalid]="formCurso.get('numeroEstudiantes')?.invalid && formCurso.get('numeroEstudiantes')?.touched"
+                placeholder="Ingresa el número de estudiantes" min="0">
+            <div *ngIf="formCurso.get('numeroEstudiantes')?.invalid && formCurso.get('numeroEstudiantes')?.touched"
+                class="error-messages">
+                <span *ngIf="formCurso.get('numeroEstudiantes')?.hasError('required')" class="error-text">El número de
+                    estudiantes es obligatorio</span>
+                <span *ngIf="formCurso.get('numeroEstudiantes')?.hasError('min')" class="error-text">El número no puede
+                    ser negativo</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Materia del curso:</label>
+            <input type="text" formControlName="materiaCurso" class="form-input"
+                [class.invalid]="formCurso.get('materiaCurso')?.invalid && formCurso.get('materiaCurso')?.touched"
+                placeholder="Ingresa la materia del curso">
+            <div *ngIf="formCurso.get('materiaCurso')?.invalid && formCurso.get('materiaCurso')?.touched"
+                class="error-messages">
+                <span *ngIf="formCurso.get('materiaCurso')?.hasError('required')" class="error-text">La materia es
+                    obligatoria</span>
+            </div>
+        </div>
+
+        <button type="submit" [disabled]="formCurso.invalid || cargando" class="submit-button">
+            {{ cargando ? 'Registrando curso...' : 'Registrar curso' }}
+        </button>
+        <div *ngIf="errorRegistro" class="general-error">
+            {{ mensajeError }}
+        </div>
+    </form>
+</div>

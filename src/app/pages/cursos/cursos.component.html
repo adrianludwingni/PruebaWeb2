@@ -1,0 +1,21 @@
+<div class="cursos-container">
+    <h2>Listado de Cursos</h2>
+
+    <div *ngIf="cargando" class="loading">
+        Cargando cursos...
+    </div>
+
+    <div *ngIf="!cargando && cursos.length === 0" class="no-cursos">
+        No hay cursos registrados aún.
+    </div>
+
+    <div class="curso-list">
+        <div *ngFor="let curso of cursos" class="curso-card">
+            <h3>{{ curso.nombreCurso }}</h3>
+            <p><strong>Profesor:</strong> {{ curso.nombreProfesor }}</p>
+            <p><strong>Materia:</strong> {{ curso.materiaCurso }}</p>
+            <p><strong>Estudiantes:</strong> {{ curso.numeroEstudiantes }}</p>
+            <p>{{ curso.descripcion }}</p>
+        </div>
+    </div>
+</div>

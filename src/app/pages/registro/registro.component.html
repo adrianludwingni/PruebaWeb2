@@ -1,0 +1,39 @@
+<div class="register-container">
+  <h2 class="register-title">Registro</h2>
+  <form [formGroup]="formRegistro" (ngSubmit)="onSubmit()" class="register-form">
+    <div class="form-group">
+      <label class="form-label">Correo electrónico:</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-input"
+        [class.invalid]="formRegistro.get('email')?.invalid && formRegistro.get('email')?.touched"
+        placeholder="Ingresa tu correo electrónico">
+      <div *ngIf="formRegistro.get('email')?.invalid && formRegistro.get('email')?.touched" class="error-messages">
+        <span *ngIf="formRegistro.get('email')?.hasError('required')" class="error-text">El correo es obligatorio</span>
+        <span *ngIf="formRegistro.get('email')?.hasError('email')" class="error-text">Ingresa un correo válido</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Contraseña:</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-input"
+        [class.invalid]="formRegistro.get('password')?.invalid && formRegistro.get('password')?.touched"
+        placeholder="Ingresa tu contraseña"
+      >
+      <div *ngIf="formRegistro.get('password')?.invalid && formRegistro.get('password')?.touched" class="error-messages">
+        <span *ngIf="formRegistro.get('password')?.hasError('required')" class="error-text">La contraseña es obligatoria</span>
+        <span *ngIf="formRegistro.get('password')?.hasError('minlength')" class="error-text">Mínimo 6 caracteres </span>
+      </div>
+    </div>
+    <button type="submit" [disabled]="formRegistro.invalid || cargando" class="submit-button">
+      {{ cargando ? 'Registrando...' : 'Registrarse' }}
+    </button>
+    <div *ngIf="errorRegistro" class="general-error">
+      {{ mensajeError }}
+    </div>
+  </form>
+  
+</div>
